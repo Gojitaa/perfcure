@@ -1,5 +1,6 @@
+import { startObserver, PerformanceMetricsHandler } from "./performanceObserver/index";
 export default class PerfCure {
-	init() {
-		console.log('Init')
+	init(callback: PerformanceMetricsHandler) {
+		startObserver(callback);
 	}
 };
