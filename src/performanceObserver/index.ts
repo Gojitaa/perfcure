@@ -7,7 +7,7 @@ const startObserver = (callback: PerformanceMetricsHandler) => {
        callback(entries) 
     });
 
-    performanceObserver.observe({entryTypes: get(), buffered: true})
+    performanceObserver.observe({entryTypes: get()})
 }
 
 export { startObserver, PerformanceMetricsHandler }
