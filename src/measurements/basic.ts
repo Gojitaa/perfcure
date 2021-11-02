@@ -1,5 +1,5 @@
-const get = () => {
+const getBasicMetrics = () => {
  return ['paint', 'largest-contentful-paint', 'first-input']
 }
 
-export { get }
+export { getBasicMetrics }

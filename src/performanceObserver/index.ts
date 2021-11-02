@@ -1,13 +1,17 @@
-import { get } from '../measurements/basic'
+import { getBasicMetrics } from '../measurements/basic'
 
-type PerformanceMetricsHandler = (param: PerformanceEntry) => never
+type PerformanceMetricHandler = (param: PerformanceEntry) => never
 
-const startObserver = (callback: PerformanceMetricsHandler) => {
-    const performanceObserver = new PerformanceObserver(entries => {
-        entries.getEntries().forEach(entry => callback(entry))
-    });
+const startObserver = (callback: PerformanceMetricHandler) => {
+    try {
+        const performanceObserver = new PerformanceObserver(entries => {
+            entries.getEntries().forEach(entry => callback(entry))
+        });
 
-    performanceObserver.observe({entryTypes: get()})
+        performanceObserver.observe({ entryTypes: getBasicMetrics() })
+    } catch(error) {
+        console.log(error)
+    }
 }
 
-export { startObserver, PerformanceMetricsHandler }
+export { startObserver, PerformanceMetricHandler }
