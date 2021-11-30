@@ -22,7 +22,7 @@ const resourcePerformanceObserver = (name: string, performanceEntryHandler: Entr
         });
        
 		
-	    return () => {
+        return () => {
             performanceObserver.observe({ type: 'resource', buffered: true }) 
             return performanceObserver
         }
