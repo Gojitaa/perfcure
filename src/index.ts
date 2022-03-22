@@ -1,11 +1,13 @@
-import { CustomMetricHandler, PerfCureEntry, PerfCureItem } from "./types";
+import { CustomMetricHandler, PerfCureEntry, PerfCureItem } from './types';
 import { basicPerformanceObserver } from './measurements/basic';
-import { resourcePerformanceObserver } from "./measurements/resource";
+import { resourcePerformanceObserver } from './measurements/resource';
+import { customPerformanceObserver } from './measurements/custom';
 export default class PerfCure {
 	private metricEntries: Map<string, PerfCureEntry> = new Map()
 	private perfModules = new Map([
 		['basic', basicPerformanceObserver],
-		['resource', resourcePerformanceObserver]
+		['resource', resourcePerformanceObserver],
+		['feature', customPerformanceObserver]	
 	])
 
 	setMetrics = (name: string, entry: PerfCureItem) => {
@@ -31,6 +33,4 @@ export default class PerfCure {
 	get(name: string) {
 		return this.metricEntries.get(name);
 	}
-
-	report(endpoint: string) {}
 };
